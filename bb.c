@@ -521,11 +521,13 @@ void calcLager()
     {
         TempErgebnis = tan((90 - (*Lager)->Winkel)/180*PI);
         TempErgebnis = (*Lager)->Lagerwerte[1] / TempErgebnis;
-        (*Lager)->Lagerwerte[0] = TempErgebnis;
+        if(TempErgebnis < 0) TempErgebnis *= -1;
+	(*Lager)->Lagerwerte[0] = TempErgebnis;
     }
 	// printf("\nAx: %f",(*Lager)->Lagerwerte[0]);
     (*Lager)->Next->Lagerwerte[0] = (*Lager)->Lagerwerte[0];
     (*Lager)->Lagerwerte[2] = (*Lager)->Lagerwerte[1]/sin((60 * PI) / 180);
+    if((*Lager)->Lagerwerte[2] < 0) (*Lager)->Lagerwerte[2] *= -1;
 
 }
 /*************************############# main #############*************************/
